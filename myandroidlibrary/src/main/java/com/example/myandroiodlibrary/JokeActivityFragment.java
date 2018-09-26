@@ -16,7 +16,7 @@ public class JokeActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        String resultOfAsync = getArguments().getString("result");
+        String resultOfAsync = getActivity().getIntent().getExtras().getString("result");
 
         View rootView = inflater.inflate(R.layout.joke_fragment, container, false);
 

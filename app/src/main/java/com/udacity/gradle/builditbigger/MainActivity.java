@@ -55,10 +55,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-
-//        Intent myIntent = new Intent(this, JokeActivity.class);
-//        startActivity(myIntent);
-
         JavaJokeClass myJoker = new JavaJokeClass();
         new EndpointsAsyncTask().execute(new Pair<Context, String>(this, myJoker.getJoke()));
     }
@@ -101,20 +97,13 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(String result) {
             beginJokeFragment(result);
-            //Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }
     }
 
     public void beginJokeFragment(String resultOfAsync) {
 
-        Bundle bundle = new Bundle();
-        bundle.putString("result", resultOfAsync);
-
-        JokeActivityFragment jokeActivityFragment = new JokeActivityFragment();
-        jokeActivityFragment.setArguments(bundle);
-        FragmentManager fm = getSupportFragmentManager();
-        fm.beginTransaction()
-                .add(R.id.joke_container, jokeActivityFragment)
-                .commit();
+        Intent myIntent = new Intent(this, JokeActivity.class);
+        myIntent.putExtra("result", resultOfAsync);
+        startActivity(myIntent);
     }
 }
